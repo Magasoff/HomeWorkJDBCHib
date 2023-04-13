@@ -1,10 +1,19 @@
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Employee {
+
+    @Id
+    @Column
     private int id;
     private String first_name;
     private String last_name;
     private String gender;
     private int age;
-    private City city;
+    @Column(name = "city_id")
+    private int city;
 
     public Employee() {
         this.id = this.id;
@@ -14,6 +23,7 @@ public class Employee {
         this.age = this.age;
         this.city = this.city;
     }
+
 
     public int getId() {
         return id;
@@ -55,11 +65,11 @@ public class Employee {
         this.age = age;
     }
 
-    public City getCity() {
+    public int getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(int City) {
         this.city = city;
     }
 
@@ -74,4 +84,5 @@ public class Employee {
                 ", city=" + city +
                 '}';
     }
+
 }

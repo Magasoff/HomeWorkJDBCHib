@@ -9,8 +9,11 @@ public class Application {
 
     public static void main(String[] args) throws SQLException {
 
-        Employee employee = new Employee();
+        Employee employee = new Employee(1, "Иван", "Иванов", "male", 23,new City(1, "Moscow"));
+        City city = new City(1, "Moscow");
         EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+        CityDAO cityDAO = new CityDAOImpl();
+        employeeDAO.add(employee);
         employeeDAO.getAllEmployee().forEach(System.out::println);
         Integer employeeID = employeeDAO.add(employee);
         System.out.println(employeeDAO.getAllEmployee());
@@ -20,5 +23,8 @@ public class Application {
         System.out.println(employeeDAO.getBuyId(4));
     }
 }
+
+
+
 
 

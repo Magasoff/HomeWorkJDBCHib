@@ -1,29 +1,28 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Employee {
 
     @Id
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String first_name;
     private String last_name;
     private String gender;
     private int age;
-    @Column(name = "city_id")
-    private int city;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id")
+    private City city;
 
-    public Employee() {
-        this.id = this.id;
+    public Employee(int id, String first_name, String last_name, String gender, int age, City city) {
+        this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.gender = this.gender;
-        this.age = this.age;
-        this.city = this.city;
+        this.gender = gender;
+        this.age = age;
+        this.city = city;
     }
-
 
     public int getId() {
         return id;
@@ -65,11 +64,11 @@ public class Employee {
         this.age = age;
     }
 
-    public int getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(int City) {
+    public void setCity(City city) {
         this.city = city;
     }
 
@@ -84,5 +83,8 @@ public class Employee {
                 ", city=" + city +
                 '}';
     }
-
 }
+
+
+
+

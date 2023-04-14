@@ -1,18 +1,27 @@
+import javax.persistence.*;
+
+@Entity
 public class Employee {
+
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String first_name;
     private String last_name;
     private String gender;
     private int age;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id")
     private City city;
 
-    public Employee() {
-        this.id = this.id;
+    public Employee(int id, String first_name, String last_name, String gender, int age, City city) {
+        this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.gender = this.gender;
-        this.age = this.age;
-        this.city = this.city;
+        this.gender = gender;
+        this.age = age;
+        this.city = city;
     }
 
     public int getId() {
@@ -75,3 +84,7 @@ public class Employee {
                 '}';
     }
 }
+
+
+
+
